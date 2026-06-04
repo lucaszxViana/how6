@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Parque Estadual do Rio Canoas — Portal SC</title>
+<meta name="description" content="Floresta de araucárias e vales preservados no planalto serrano catarinense.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="cabecalho">
+  <div class="cabecalho-conteudo">
+    <a href="index.html" class="logo">
+      <span class="logo-icone">P</span>
+      <span class="logo-texto">Portal dos Parques<small>Estaduais de SC</small></span>
+    </a>
+    <nav class="navegacao">
+      <a href="index.html">Início</a>
+      <a href="acarai.html">Acaraí</a>
+      <a href="rio-canoas.html" class="ativo">Rio Canoas</a>
+      <a href="rio-vermelho.html">Rio Vermelho</a>
+      <a href="araucarias.html">Araucárias</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="parque-hero">
+  <img src="img/rio-canoas.jpg" alt="Parque Estadual do Rio Canoas">
+  <div class="hero-overlay"></div>
+  <div class="parque-hero-conteudo">
+    <p class="hero-sobrancelha">Parque Estadual</p>
+    <h1>Parque Estadual do Rio Canoas</h1>
+    <p class="destaque">Floresta de araucárias e vales preservados no planalto serrano catarinense.</p>
+  </div>
+</section>
+
+<section class="parque-corpo">
+  <aside>
+    <div class="info-box">
+      <small>Localização</small>
+      <p>Campos Novos, SC</p>
+    </div>
+    <div class="info-box">
+      <small>Área aproximada</small>
+      <p>Cerca de 1.131 hectares</p>
+    </div>
+    <a href="contato.html" class="botao botao-verde" style="display:block;text-align:center">Enviar denúncia ou sugestão</a>
+  </aside>
+  <div class="parque-texto">
+          <p>Criado em 2004, o parque protege um dos últimos remanescentes significativos da Floresta Ombrófila Mista — a mata de araucárias — no planalto catarinense.</p>
+          <p>O Rio Canoas atravessa o parque formando corredeiras e poços de águas frias, em meio a um relevo ondulado típico da região.</p>
+          <p>Centro de pesquisa e educação ambiental, abriga espécies ameaçadas como a araucária centenária, a gralha-azul e o cachorro-vinagre.</p>
+  </div>
+</section>
+
+<section class="galeria">
+  <h2>Galeria</h2>
+  <div class="galeria-grid">
+    <img src="img/rio-canoas2.jpg" alt="Parque Estadual do Rio Canoas">
+    <img src="img/rio-canoas3.jpg" alt="Paisagem catarinense">
+  </div>
+</section>
+<section class="historico" id="historico">
+  <h2>Histórico de comunicações</h2>
+  <p class="historico-sub">Mensagens enviadas pelos visitantes sobre este parque (armazenadas neste navegador).</p>
+  <div id="historico-lista" class="historico-lista">
+    <p class="historico-vazio">Nenhuma comunicação registrada ainda. <a href="contato.html">Seja o primeiro a enviar →</a></p>
+  </div>
+  <div style="text-align:right;margin-top:1rem">
+    <button type="button" class="botao-limpar" onclick="limparHistorico()">Limpar histórico</button>
+  </div>
+</section>
+<script>
+  const PARQUE_ATUAL = "Parque Estadual do Rio Canoas";
+  function escaparHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function renderHistorico(){
+    const lista = JSON.parse(localStorage.getItem('comunicacoes')||'[]')
+      .filter(r => r.parque === PARQUE_ATUAL);
+    const cont = document.getElementById('historico-lista');
+    if(!lista.length){
+      cont.innerHTML = '<p class="historico-vazio">Nenhuma comunicação registrada ainda. <a href="contato.html">Seja o primeiro a enviar →</a></p>';
+      return;
+    }
+    cont.innerHTML = lista.map(r => {
+      const dh = new Date(r.datahora).toLocaleString('pt-BR');
+      const tipoClasse = r.tipo === 'Denúncia' ? 'tag-denuncia' : 'tag-sugestao';
+      return `<article class="historico-item">
+        <header>
+          <span class="tag ${tipoClasse}">${escaparHtml(r.tipo)}</span>
+          <time>${escaparHtml(dh)}</time>
+        </header>
+        <p class="historico-mensagem">${escaparHtml(r.mensagem)}</p>
+        <footer><strong>${escaparHtml(r.nome)}</strong> · ${escaparHtml(r.email)}</footer>
+      </article>`;
+    }).join('');
+  }
+  function limparHistorico(){
+    if(!confirm('Remover todas as comunicações registradas neste navegador?')) return;
+    const restantes = JSON.parse(localStorage.getItem('comunicacoes')||'[]')
+      .filter(r => r.parque !== PARQUE_ATUAL);
+    localStorage.setItem('comunicacoes', JSON.stringify(restantes));
+    renderHistorico();
+  }
+  renderHistorico();
+</script>
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <p>© 2026 Portal dos Parques Estaduais de SC</p>
+    <a href="contato.html">Enviar denúncia ou sugestão →</a>
+  </div>
+</footer>
+</body></html>

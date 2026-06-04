@@ -1,0 +1,191 @@
+/* Portal dos Parques Estaduais de SC
+   Paleta: Verde Floresta + Areia de Praia */
+:root{
+  --verde-floresta:#2f5d3a;
+  --verde-escuro:#1f4128;
+  --verde-claro:#4a7a55;
+  --areia:#f3ead5;
+  --areia-clara:#faf5e6;
+  --areia-escura:#d9c89a;
+  --texto:#1f2a22;
+  --texto-suave:#5a6b5f;
+  --branco:#ffffff;
+  --sombra:0 10px 30px -10px rgba(31,65,40,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Georgia,'Times New Roman',serif;
+  color:var(--texto);
+  background:var(--areia-clara);
+  line-height:1.6;
+}
+a{color:var(--verde-floresta);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+
+/* Cabeçalho */
+.cabecalho{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,245,230,.95);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--areia-escura);
+}
+.cabecalho-conteudo{
+  max-width:1100px;margin:0 auto;padding:1rem 1.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:bold;color:var(--verde-floresta)}
+.logo-icone{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--verde-floresta);color:var(--areia);
+  display:grid;place-items:center;font-size:1.2rem;
+}
+.logo-texto{display:flex;flex-direction:column;line-height:1.1}
+.logo-texto small{font-size:.7rem;letter-spacing:.18em;color:var(--texto-suave);text-transform:uppercase;font-weight:normal}
+.navegacao{display:flex;flex-wrap:wrap;gap:.25rem}
+.navegacao a{
+  padding:.5rem .9rem;border-radius:6px;color:var(--texto);
+  font-family:Arial,sans-serif;font-size:.9rem;
+}
+.navegacao a:hover{background:var(--areia);text-decoration:none}
+.navegacao a.ativo{background:var(--verde-floresta);color:var(--areia)}
+
+/* Hero */
+.hero{
+  position:relative;height:75vh;min-height:480px;overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(31,65,40,.85),rgba(47,93,58,.55));z-index:1}
+.hero-conteudo{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 1.5rem;color:var(--areia)}
+.hero-sobrancelha{text-transform:uppercase;letter-spacing:.3em;font-size:.75rem;margin-bottom:1rem;opacity:.9;font-family:Arial,sans-serif}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;max-width:850px}
+.hero p{margin-top:1.2rem;font-size:1.15rem;max-width:600px;opacity:.95}
+.hero-acoes{margin-top:2rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+.botao{
+  display:inline-block;padding:.85rem 1.5rem;border-radius:6px;
+  font-family:Arial,sans-serif;font-weight:600;cursor:pointer;border:none;
+  transition:opacity .2s,transform .2s;text-decoration:none;
+}
+.botao:hover{opacity:.9;text-decoration:none;transform:translateY(-1px)}
+.botao-primario{background:var(--areia-escura);color:var(--verde-escuro)}
+.botao-secundario{background:transparent;color:var(--areia);border:1px solid rgba(243,234,213,.5)}
+.botao-verde{background:var(--verde-floresta);color:var(--areia)}
+.botao-grande{padding:1rem 1.8rem;font-size:1.05rem}
+
+/* Seções */
+.secao{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
+.secao-titulo{font-size:2.2rem;margin-bottom:.5rem;color:var(--verde-escuro)}
+.secao-sobrancelha{text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;color:var(--texto-suave);font-family:Arial,sans-serif}
+
+/* Grid de parques */
+.parques-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;margin-top:2.5rem;
+}
+.parque-card{
+  background:var(--branco);border-radius:10px;overflow:hidden;
+  border:1px solid var(--areia-escura);box-shadow:var(--sombra);
+  transition:transform .3s;color:var(--texto);
+}
+.parque-card:hover{transform:translateY(-6px);text-decoration:none}
+.parque-card img{height:180px;width:100%;object-fit:cover}
+.parque-card-corpo{padding:1.2rem}
+.parque-card h3{color:var(--verde-escuro);margin-bottom:.5rem;font-size:1.25rem}
+.parque-card p{color:var(--texto-suave);font-size:.95rem}
+
+/* CTA verde */
+.cta-verde{background:var(--verde-floresta);color:var(--areia);margin-top:2rem}
+.cta-verde-conteudo{
+  max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem;
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;
+}
+.cta-verde h2{font-size:2rem;line-height:1.2}
+.cta-verde p{margin-top:.8rem;opacity:.9}
+@media(max-width:700px){.cta-verde-conteudo{grid-template-columns:1fr}}
+
+/* Página de parque */
+.parque-hero{position:relative;height:55vh;min-height:380px;overflow:hidden;display:flex;align-items:flex-end}
+.parque-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.parque-hero .hero-overlay{z-index:1}
+.parque-hero-conteudo{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 1.5rem 3rem;color:var(--areia);width:100%}
+.parque-hero h1{font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.1}
+.parque-hero .destaque{margin-top:1rem;font-size:1.1rem;opacity:.9;max-width:600px}
+
+.parque-corpo{
+  max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem;
+  display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;
+}
+@media(max-width:800px){.parque-corpo{grid-template-columns:1fr}}
+.info-box{background:var(--areia);padding:1.2rem;border-radius:8px;margin-bottom:1rem}
+.info-box small{text-transform:uppercase;letter-spacing:.15em;font-size:.7rem;color:var(--texto-suave);font-family:Arial,sans-serif}
+.info-box p{margin-top:.3rem;font-weight:600}
+.parque-texto p{font-size:1.05rem;margin-bottom:1rem}
+
+.galeria{max-width:1100px;margin:0 auto;padding:0 1.5rem 4rem}
+.galeria h2{font-size:1.8rem;color:var(--verde-escuro);margin-bottom:1.2rem}
+.galeria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.galeria-grid img{height:260px;width:100%;object-fit:cover;border-radius:8px;box-shadow:var(--sombra)}
+
+/* Formulário */
+.formulario-secao{max-width:720px;margin:0 auto;padding:4rem 1.5rem}
+.formulario-secao h1{font-size:2.8rem;color:var(--verde-escuro);margin-top:.5rem}
+.formulario-secao>p{margin-top:1rem;color:var(--texto-suave);font-size:1.1rem}
+.formulario{
+  margin-top:2.5rem;background:var(--branco);padding:2rem;border-radius:10px;
+  border:1px solid var(--areia-escura);box-shadow:var(--sombra);
+}
+.campo{display:block;margin-bottom:1.3rem}
+.campo>span{display:block;font-family:Arial,sans-serif;font-size:.9rem;font-weight:600;margin-bottom:.5rem;color:var(--verde-escuro)}
+.campo input[type=text],
+.campo input[type=email],
+.campo input[type=datetime-local],
+.campo select,
+.campo textarea{
+  width:100%;padding:.75rem .9rem;border-radius:6px;border:1px solid var(--areia-escura);
+  background:var(--areia-clara);font:inherit;color:var(--texto);
+}
+.campo textarea{resize:vertical;min-height:120px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  outline:2px solid var(--verde-floresta);outline-offset:1px;
+}
+.radio-grupo{display:flex;gap:1.5rem;padding-top:.3rem;font-family:Arial,sans-serif}
+.radio-grupo label{display:flex;align-items:center;gap:.4rem;cursor:pointer}
+.aviso{font-size:.85rem;color:var(--texto-suave);margin-bottom:1rem;font-family:Arial,sans-serif}
+.mensagem-sucesso{
+  display:none;margin-bottom:1.5rem;padding:1rem 1.2rem;border-radius:8px;
+  background:rgba(47,93,58,.12);border:1px solid var(--verde-floresta);color:var(--verde-escuro);
+}
+.mensagem-sucesso.visivel{display:block}
+
+/* Rodapé */
+.rodape{
+  border-top:1px solid var(--areia-escura);background:var(--areia);
+  margin-top:3rem;
+}
+.rodape-conteudo{
+  max-width:1100px;margin:0 auto;padding:2rem 1.5rem;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  color:var(--texto-suave);font-family:Arial,sans-serif;font-size:.9rem;
+}
+
+
+/* Histórico de comunicações */
+.historico { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+.historico h2 { font-family: var(--fonte-serif); font-size: 2rem; color: var(--verde-floresta); margin-bottom: .35rem; }
+.historico-sub { color: var(--texto-suave); margin-bottom: 1.5rem; }
+.historico-lista { display: grid; gap: 1rem; }
+.historico-vazio { padding: 2rem; text-align: center; background: var(--areia-suave); border: 1px dashed var(--borda); border-radius: .75rem; color: var(--texto-suave); }
+.historico-vazio a { color: var(--verde-floresta); font-weight: 600; }
+.historico-item { background: #fff; border: 1px solid var(--borda); border-left: 4px solid var(--verde-floresta); border-radius: .6rem; padding: 1.1rem 1.25rem; box-shadow: 0 4px 14px -10px rgba(0,0,0,.15); }
+.historico-item header { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:.6rem; }
+.historico-item time { font-size:.85rem; color: var(--texto-suave); }
+.historico-mensagem { margin: .25rem 0 .75rem; line-height:1.55; white-space:pre-wrap; }
+.historico-item footer { font-size:.85rem; color: var(--texto-suave); border-top:1px solid var(--borda); padding-top:.55rem; }
+.tag { display:inline-block; padding:.2rem .65rem; border-radius:999px; font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+.tag-denuncia { background:#fde2e2; color:#8a1c1c; }
+.tag-sugestao { background:#e2efd9; color: var(--verde-floresta); }
+.botao-limpar { background:transparent; border:1px solid var(--borda); color: var(--texto-suave); padding:.5rem .9rem; border-radius:.4rem; cursor:pointer; font-size:.85rem; }
+.botao-limpar:hover { color:#8a1c1c; border-color:#8a1c1c; }

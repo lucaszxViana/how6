@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Portal dos Parques Estaduais de SC</title>
+<meta name="description" content="Conheça os parques estaduais de Santa Catarina: paisagens, fauna, flora e como contribuir com sua preservação.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="cabecalho">
+  <div class="cabecalho-conteudo">
+    <a href="index.html" class="logo">
+      <span class="logo-icone">P</span>
+      <span class="logo-texto">Portal dos Parques<small>Estaduais de SC</small></span>
+    </a>
+    <nav class="navegacao">
+      <a href="index.html" class="ativo">Início</a>
+      <a href="acarai.html">Acaraí</a>
+      <a href="rio-canoas.html">Rio Canoas</a>
+      <a href="rio-vermelho.html">Rio Vermelho</a>
+      <a href="araucarias.html">Araucárias</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <img class="hero-img" src="img/hero.jpg" alt="Paisagem dos parques estaduais de Santa Catarina">
+  <div class="hero-overlay"></div>
+  <div class="hero-conteudo">
+    <p class="hero-sobrancelha">Santa Catarina</p>
+    <h1>Portal dos Parques Estaduais de SC</h1>
+    <p>Da Mata Atlântica à serra das araucárias — fotografias, histórias e um canal direto para denúncias e sugestões.</p>
+    <div class="hero-acoes">
+      <a href="acarai.html" class="botao botao-primario">Explorar parques</a>
+      <a href="contato.html" class="botao botao-secundario">Enviar comunicação</a>
+    </div>
+  </div>
+</section>
+
+<section class="secao">
+  <p class="secao-sobrancelha">Nossos parques</p>
+  <h2 class="secao-titulo">Quatro destinos, uma natureza</h2>
+  <p style="color:var(--texto-suave);max-width:600px">Cada parque conta uma história única do território catarinense. Clique para conhecer fotos, fauna, flora e trilhas.</p>
+
+  <div class="parques-grid">
+    <a href="acarai.html" class="parque-card">
+      <img src="img/acarai.jpg" alt="Acaraí">
+      <div class="parque-card-corpo">
+        <h3>Acaraí</h3>
+        <p>Restinga e dunas no litoral norte catarinense.</p>
+      </div>
+      </a>
+    <a href="rio-canoas.html" class="parque-card">
+      <img src="img/rio-canoas.jpg" alt="Rio Canoas">
+      <div class="parque-card-corpo">
+        <h3>Rio Canoas</h3>
+        <p>Araucárias e vales no planalto serrano.</p>
+      </div>
+    </a>
+    <a href="rio-vermelho.html" class="parque-card">
+      <img src="img/rio-vermelho.jpg" alt="Acaraí">
+      <div class="parque-card-corpo">
+        <h3>Rio Vermelho</h3>
+        <p>Restinga e a extensa Praia do Moçambique.</p>
+      </div>
+      </a>
+    <a href="araucarias.html" class="parque-card">
+      <img src="img/araucarias.jpg" alt="Acaraí">
+      <div class="parque-card-corpo">
+        <h3>Araucárias</h3>
+        <p>Refúgio da Mata com Araucárias no oeste de SC..</p>
+      </div>
+      </a>
+  </div>    
+</section>
+
+<section class="cta-verde">
+  <div class="cta-verde-conteudo">
+    <div>
+      <h2>Viu algo que precisa de atenção?</h2>
+      <p>Envie denúncias ambientais ou sugestões pelo formulário. Cada mensagem é registrada com data e hora.</p>
+    </div>
+    <a href="contato.html" class="botao botao-primario botao-grande">Abrir formulário</a>
+  </div>
+</section>
+
+<form id="form-comunicacao">
+  <div>
+    <label for="titulo">Título</label>
+    <input
+      type="text"
+      id="titulo"
+      name="titulo"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="mensagem">Mensagem</label>
+    <textarea
+      id="mensagem"
+      name="mensagem"
+      required
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="email">E-mail</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="parque">Unidade de Conservação</label>
+    <select
+      id="parque"
+      name="parque"
+      required
+    >
+      <option value="">Selecione uma unidade</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="datahora">Data e Hora</label>
+    <input
+      type="datetime-local"
+      id="datahora"
+      name="datahora"
+      required
+    />
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <p>© 2026 Portal dos Parques Estaduais de SC</p>
+    <a href="contato.html">Enviar denúncia ou sugestão →</a>
+  </div>
+</footer>
+
+<script>
+  document
+    .getElementById('form-comunicacao')
+    .addEventListener('submit', enviarForm);
+</script>
+
+</body>
+</html>

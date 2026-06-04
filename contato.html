@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contato — Denúncias e Sugestões | Portal Parques SC</title>
+<meta name="description" content="Envie denúncias ou sugestões sobre os parques estaduais de Santa Catarina.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="cabecalho">
+  <div class="cabecalho-conteudo">
+    <a href="index.html" class="logo">
+      <span class="logo-icone">P</span>
+      <span class="logo-texto">Portal dos Parques<small>Estaduais de SC</small></span>
+    </a>
+    <nav class="navegacao">
+      <a href="index.html">Início</a>
+      <a href="acarai.html">Acaraí</a>
+      <a href="rio-canoas.html">Rio Canoas</a>
+      <a href="rio-vermelho.html">Rio Vermelho</a>
+      <a href="araucarias.html">Araucárias</a>
+      <a href="contato.html" class="ativo">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="formulario-secao">
+  <p class="secao-sobrancelha">Fale conosco</p>
+  <h1>Denúncias e sugestões</h1>
+  <p>Sua mensagem ajuda a proteger nossos parques. Todos os envios são registrados com data e hora.</p>
+
+  <div id="sucesso" class="mensagem-sucesso">
+    ✓ <span id="sucesso-texto">Mensagem enviada com sucesso.</span>
+  </div>
+
+  <form class="formulario" id="form-contato" onsubmit="return enviarForm(event)">
+    <label class="campo">
+      <span>Nome completo</span>
+      <input type="text" name="nome" maxlength="100" required>
+    </label>
+    <label class="campo">
+      <span>E-mail</span>
+      <input type="email" name="email" maxlength="255" required>
+    </label>
+    <label class="campo">
+      <span>Parque estadual</span>
+      <select name="parque" required>
+        <option value="">Selecione um parque</option>
+        <option>Parque Estadual Acaraí</option>
+        <option>Parque Estadual do Rio Canoas</option>
+        <option>Parque Estadual do Rio Vermelho</option>
+        <option>Parque Estadual das Araucárias</option>
+      </select>
+    </label>
+    <div class="campo">
+      <span>Tipo de comunicação</span>
+      <div class="radio-grupo">
+        <label><input type="radio" name="tipo" value="Denúncia" required> Denúncia</label>
+        <label><input type="radio" name="tipo" value="Sugestão"> Sugestão</label>
+      </div>
+    </div>
+    <label class="campo">
+      <span>Data e hora do envio</span>
+      <input type="datetime-local" name="datahora" id="datahora" required>
+    </label>
+    <label class="campo">
+      <span>Mensagem</span>
+      <textarea name="mensagem" minlength="10" maxlength="1000" required></textarea>
+    </label>
+    <p class="aviso">A data e hora podem ser ajustadas, mas são preenchidas automaticamente com o momento atual.</p>
+    <button type="submit" class="botao botao-verde" style="width:100%">Enviar comunicação</button>
+  </form>
+</section>
+
+<script>
+  function agoraLocal(){
+    const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0,16);
+  }
+  document.getElementById('datahora').value = agoraLocal();
+
+  function enviarForm(e){
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const registro = {
+      nome: fd.get('nome'),
+      email: fd.get('email'),
+      parque: fd.get('parque'),
+      tipo: fd.get('tipo'),
+      datahora: fd.get('datahora'),
+      mensagem: fd.get('mensagem'),
+      enviadoEm: new Date().toISOString()
+    };
+    const lista = JSON.parse(localStorage.getItem('comunicacoes') || '[]');
+    lista.unshift(registro);
+    localStorage.setItem('comunicacoes', JSON.stringify(lista));
+
+    const sucesso = document.getElementById('sucesso');
+    const texto = document.getElementById('sucesso-texto');
+    const dh = new Date(registro.datahora).toLocaleString('pt-BR');
+    texto.textContent = `${registro.tipo} para ${registro.parque} — registrada em ${dh}. Veja o histórico na página do parque.`;
+    sucesso.classList.add('visivel');
+    e.target.reset();
+    document.getElementById('datahora').value = agoraLocal();
+    window.scrollTo({top:0,behavior:'smooth'});
+    return false;
+  }
+</script>
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <p>© 2026 Portal dos Parques Estaduais de SC</p>
+    <a href="contato.html">Enviar denúncia ou sugestão →</a>
+  </div>
+</footer>
+</body></html>
