@@ -1,0 +1,19 @@
+Backend HOW6
+
+Tecnologias:
+- Node.js
+- Express
+- MySQL
+
+Instalação:
+
+npm install
+
+Execução:
+
+node server.js
+
+Endpoint:
+
+GET /unidades-conservacao
+
