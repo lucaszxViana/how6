@@ -32,6 +32,30 @@ app.get('/unidades-conservacao', (req, res) => {
     });
 });
 
+app.post('/comunicacoes', (req, res) => {
+    const { titulo, descricao, email, id_unidade } = req.body;
+    const sql = `
+        INSERT INTO comunicacao (titulo, descricao, datahora, email, id_unidade, status)
+        VALUES (?, ?, NOW(), ?, ?, 0)
+    `;
+    db.query(sql, [titulo, descricao, email, id_unidade], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.status(201).json({ mensagem: 'Comunicação salva!', id: result.insertId });
+    });
+});
+
+app.get('/comunicacoes/:id_unidade', (req, res) => {
+    const { id_unidade } = req.params;
+    const sql = `
+        SELECT * FROM comunicacao
+        WHERE id_unidade = ?
+    `;
+    db.query(sql, [id_unidade], (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
 });
